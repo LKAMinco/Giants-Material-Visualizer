@@ -81,15 +81,15 @@ def update_material(self, context):
                 normal_color = normal.inputs.get('Color')
                 if normal_color.links:
                     node_tree.links.new(node.inputs['Normal'], normal_color.links[0].from_socket)
-                    if not resolution:
-                        image_node = normal_color.links[0].from_node
-                        if image_node.type == 'TEX_IMAGE':
-                            resolution = image_node.image.size[0], image_node.image.size[1]
 
             glossmap = node_tree.nodes.get('Glossmap')
             if glossmap:
                 glossmap_color = glossmap.inputs.get('Color')
                 node_tree.links.new(node.inputs['Specular'], glossmap_color.links[0].from_socket)
+                if not resolution:
+                    image_node = glossmap_color.links[0].from_node
+                    if image_node.type == 'TEX_IMAGE':
+                        resolution = image_node.image.size[0], image_node.image.size[1]
 
             if resolution:
                 scale = max(max(resolution[0], resolution[1]) / 256.0, 1.0)
