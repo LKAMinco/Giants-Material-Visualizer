@@ -54,7 +54,10 @@ class MATVIS_OT_SetData(Operator):
         return check_material(context)
 
     def execute(self, context):
-        set_data_i3dio(context)
+        try:
+            set_data_i3dio(context)
+        except IndexError:
+            self.report({'ERROR'}, 'Material does not have colorMat node')
         return {'FINISHED'}
 
 
