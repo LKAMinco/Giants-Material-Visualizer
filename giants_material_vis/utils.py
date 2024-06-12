@@ -90,6 +90,10 @@ def update_material(self, context):
                     image_node = glossmap_color.links[0].from_node
                     if image_node.type == 'TEX_IMAGE':
                         resolution = image_node.image.size[0], image_node.image.size[1]
+            elif normal:
+                image_node = normal_color.links[0].from_node
+                if image_node.type == 'TEX_IMAGE':
+                    resolution = image_node.image.size[0], image_node.image.size[1]
 
             if resolution:
                 scale = max(max(resolution[0], resolution[1]) / 256.0, 1.0)
