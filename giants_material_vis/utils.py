@@ -126,7 +126,7 @@ def set_data_i3dio(context):
     shader = mat.node_tree.nodes.get('FS22_colorMask')
     shader_parameters = mat.i3d_attributes.shader_parameters
 
-    for i in range(2, 9):
+    for i in range(2, 10):
         shader.inputs[f'colorMat{i - 2}'].default_value[:3] = shader_parameters[i].data_float_4[:3]
         shader.inputs[f'mat{i - 2}'].default_value = shader_parameters[i].data_float_4[3]
 
@@ -136,6 +136,6 @@ def get_data_i3dio(context):
     shader = mat.node_tree.nodes.get('FS22_colorMask')
     shader_parameters = mat.i3d_attributes.shader_parameters
 
-    for i in range(2, 9):
+    for i in range(2, 10):
         shader_parameters[i].data_float_4[:3] = shader.inputs[f'colorMat{i - 2}'].default_value[:3]
         shader_parameters[i].data_float_4[3] = shader.inputs[f'mat{i - 2}'].default_value
